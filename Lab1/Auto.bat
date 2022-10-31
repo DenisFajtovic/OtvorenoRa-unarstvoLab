@@ -1,0 +1,1 @@
+psql -U postgres Otvoreno < Auto.txt
