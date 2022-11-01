@@ -5,7 +5,7 @@
 Denis Fajtović
 * **Opis licencije**  
 **MIT License**  
-Slobodno možete dijeliti dalje, stvarati prerade, te koristiti u vlastitu ili javnu svrhu.
+Slobodno možete dijeliti dalje, stvarati prerade, te koristiti u vlastitu ili javnu svrhu.  
 Navedeno možete raditi pod uvjetom da sve kopije sadrže kopiju navedene licence.
 * **Verzija skupa**  
 V1
