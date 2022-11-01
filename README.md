@@ -24,7 +24,7 @@ Book
 |Ime atributa|Opis|
 |------------|----|
 |Id|Podatak koji predstavlja ID booka|
-|Fotograf|OIB osobe koja je slikala|
+|Fotograf|OIB fotografa koji je slikao|
 |Mladenac|OIB prve osobe koja se vjenča|
 |Mladenka|OIB druge osobe koja se vjenča|
 |Format|U kojem je formatu (veličini) book|
