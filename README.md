@@ -4,9 +4,9 @@
 * **Autor**  
 Denis Fajtović
 * **Opis licencije**  
-**CC BY-NC-SA**  
-Slobodno možete dijeliti dalje (umnažati i redistribuirati materijal u bilo kojem mediju ili formatu) i stvarati prerade (remiksirati, mijenjati i prerađivati djelo).
-Navedeno možete raditi pod uvjetom adekvatnog imenovanja, nekomercijalne distribucije te dijeljenje pod istim uvjetima.  
+**MIT License**  
+Slobodno možete dijeliti dalje, stvarati prerade, te koristiti u vlastitu ili javnu svrhu.
+Navedeno možete raditi pod uvjetom da sve kopije sadrže kopiju navedene licence.
 * **Verzija skupa**  
 V1
 * **Jezik**  
