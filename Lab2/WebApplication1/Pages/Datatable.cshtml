@@ -1,0 +1,87 @@
+﻿@page
+@model PrivacyModel
+@{
+    ViewData["Title"] = "Datatable";
+}
+<h1>@ViewData["Title"]</h1>
+
+<div>
+    <button onclick="fun_csv()">Export to CSV</button>
+    <button onclick="fun_json()">Export to JSON</button>
+    <hr />
+</div>
+<table id="example" class="display" style="width:100%">
+</table>
+<script>
+
+    window.onload = fun_auto();
+
+    async function fun_json() {
+        //$('#example').DataTable();
+
+        //var arg=
+        //console.log("________");
+        //$('#example').on('search.dt', function () {
+            var value = $('.dataTables_filter input').val();
+            //console.log(value); // <-- the value
+        //});
+        //console.log("________");
+        var apiUrl = 'http://localhost:5000/api/Database/0/' + value;
+        console.log(apiUrl);
+        window.open(apiUrl, '_blank');
+        /*
+        await fetch(apiUrl).then(response => {
+            console.log("here lives the response:", response);
+            var headers = response.headers;
+            var blob = new Blob([response.body], { type: headers['application/json'] });
+            var link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = "Filename.json";
+            link.click();
+        });
+     */   
+    }
+    async function fun_csv() {
+        var value = $('.dataTables_filter input').val();
+        var apiUrl = 'http://localhost:5000/api/Database/1/' + value;
+        console.log(apiUrl);
+        window.open(apiUrl, '_blank');
+
+    }
+    async function fun_auto() {
+        //var apiUrl = 'http://localhost:5359/api/Database';
+        var apiUrl = 'http://localhost:5000/api/Database';
+       
+        
+        await fetch(apiUrl).then(response => {
+            return response.json();
+        }).then(data => {
+            // Work with JSON data here
+            let dat = data.data;
+            let head = data.rowNames;
+
+            var tablehtml = document.getElementById("example");
+            var extrahtml = "";
+            extrahtml += "<thead><tr>";
+            for (let i = 0; i < head.length; i++) {
+                extrahtml += "<th>" + head[i] + "</th>";
+            }
+            extrahtml += "</tr></thead>";
+            
+            for (let i = 0; i < dat.length; i++) {
+                extrahtml += "<tr>";
+                for (let j = 0; j < head.length; j++) {
+                    extrahtml += "<th>" + dat[i][j] + "</th>";
+                }
+                extrahtml += "</tr>";
+            }
+            tablehtml.innerHTML += extrahtml;
+
+            $('#example').DataTable();
+        }).catch(err => {
+            alert(err);
+    });
+    
+
+    }
+</script>  

@@ -1,0 +1,255 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "array",
+  "items": [
+    {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "fotograf": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenac": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenka": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "Format": {
+          "type": "string"
+        },
+        "Korice": {
+          "type": "string"
+        },
+        "Broj listova": {
+          "type": "integer"
+        },
+        "Paket": {
+          "type": "boolean"
+        },
+        "Faceoff": {
+          "type": "string"
+        },
+        "Cijena": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Id",
+        "fotograf",
+        "mladenac",
+        "mladenka",
+        "Format",
+        "Korice",
+        "Broj listova",
+        "Paket",
+        "Faceoff",
+        "Cijena"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "fotograf": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenac": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenka": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "Format": {
+          "type": "string"
+        },
+        "Korice": {
+          "type": "string"
+        },
+        "Broj listova": {
+          "type": "integer"
+        },
+        "Paket": {
+          "type": "boolean"
+        },
+        "Faceoff": {
+          "type": "string"
+        },
+        "Cijena": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Id",
+        "fotograf",
+        "mladenac",
+        "mladenka",
+        "Format",
+        "Korice",
+        "Broj listova",
+        "Paket",
+        "Faceoff",
+        "Cijena"
+      ]
+    },
+    {
+      "type": "object",
+      "properties": {
+        "Id": {
+          "type": "string"
+        },
+        "fotograf": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenac": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "mladenka": {
+          "type": "object",
+          "properties": {
+            "Ime": {
+              "type": "string"
+            },
+            "Prezime": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "Ime",
+            "Prezime"
+          ]
+        },
+        "Format": {
+          "type": "string"
+        },
+        "Korice": {
+          "type": "string"
+        },
+        "Broj listova": {
+          "type": "integer"
+        },
+        "Paket": {
+          "type": "boolean"
+        },
+        "Faceoff": {
+          "type": "string"
+        },
+        "Cijena": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "Id",
+        "fotograf",
+        "mladenac",
+        "mladenka",
+        "Format",
+        "Korice",
+        "Broj listova",
+        "Paket",
+        "Faceoff",
+        "Cijena"
+      ]
+    }
+  ]
+}
