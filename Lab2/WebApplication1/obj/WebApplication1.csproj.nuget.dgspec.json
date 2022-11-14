@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Link\\Desktop\\3H\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Users\\Link\\Documents\\GitHub\\OtvorenoRacunarstvoLab\\Lab2\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Link\\Desktop\\3H\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Users\\Link\\Documents\\GitHub\\OtvorenoRacunarstvoLab\\Lab2\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Link\\Desktop\\3H\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Users\\Link\\Documents\\GitHub\\OtvorenoRacunarstvoLab\\Lab2\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Users\\Link\\Desktop\\3H\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Users\\Link\\Documents\\GitHub\\OtvorenoRacunarstvoLab\\Lab2\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\Link\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Link\\Desktop\\3H\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Users\\Link\\Documents\\GitHub\\OtvorenoRacunarstvoLab\\Lab2\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Link\\AppData\\Roaming\\NuGet\\NuGet.Config",
