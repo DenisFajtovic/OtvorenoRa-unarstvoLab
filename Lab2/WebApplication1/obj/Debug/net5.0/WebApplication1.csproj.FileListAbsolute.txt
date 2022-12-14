@@ -49,7 +49,6 @@ C:\Users\Link\Desktop\3H\WebApplication1\WebApplication1\bin\Debug\net5.0\tmp\da
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\appsettings.Development.json
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\appsettings.json
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\WebApplication1.exe
-C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\tmp\data.json
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\WebApplication1.deps.json
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\WebApplication1.runtimeconfig.json
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab2\WebApplication1\bin\Debug\net5.0\WebApplication1.runtimeconfig.dev.json

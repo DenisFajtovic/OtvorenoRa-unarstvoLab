@@ -1,0 +1,30 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+
+    <div>
+        <button onclick="fun_csv()">Export to CSV</button>
+        <button onclick="fun_json()">Export to JSON</button>
+    </div>
+</div>
+
+<script>
+
+    async function fun_json() {
+        //$('#example').DataTable();
+        var apiUrl = 'http://localhost:5000/api/Database/0';
+        window.open(apiUrl, '_blank');
+     
+    }
+    async function fun_csv() {
+        //$('#example').DataTable();
+        var apiUrl = 'http://localhost:5000/api/Database/1';
+        window.open(apiUrl, '_blank');
+    }
+
+</script>  

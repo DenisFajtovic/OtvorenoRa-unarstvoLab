@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
+//using System.Web.Http;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -39,6 +40,7 @@ namespace WebApplication1.Controllers
 
 
         // GET: api/<ValuesController>
+        //api za sve podatke
         [HttpGet]
         public DataStructure Get()
         {
@@ -84,6 +86,7 @@ namespace WebApplication1.Controllers
             
         }
 
+        //api za sve podatke s odabirom u scv ili json formatu
         [HttpGet("{mode}")]
         public async Task<ActionResult> Get(string mode) //DataStructure
         {
@@ -185,10 +188,12 @@ namespace WebApplication1.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+                return BadRequest();
             }
             return null;
         }
 
+        //api za wildcard filtrirano biranje
         // GET api/<ValuesController>/5
         [HttpGet("{mode}/{arg}")]
         public async Task<ActionResult> Get(string mode, string arg)
@@ -323,7 +328,7 @@ namespace WebApplication1.Controllers
             return null;
         }
 
-
+        //api za biranje po atributu
         // GET api/<ValuesController>/5
         [HttpGet("{mode}/{arg}/{col}")]
         public async Task<ActionResult> Get(string mode, string arg, string col)
@@ -451,6 +456,73 @@ namespace WebApplication1.Controllers
             catch (Exception ex)
             {
                 Console.WriteLine(ex);
+            }
+            return null;
+        }
+
+        //api za id odabir
+        [HttpGet("id/{id}")]
+        public async Task<ActionResult> Get(long id)
+        {
+            string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
+            try
+            {
+                string jsoncmd = "SET client_encoding TO 'UTF8'; select array_to_json(array_agg(row_to_json(t))) from ( select b.\"Id\", json_build_object( 'Ime', f.\"Ime\", 'Prezime', f.\"Prezime\" ) as Fotograf, json_build_object( 'Ime', m.\"Ime\", 'Prezime', m.\"Prezime\" ) as Mladenac, json_build_object( 'Ime', a.\"Ime\", 'Prezime', a.\"Prezime\" ) as Mladenka, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\" ) t";
+                //string csvcmd = "select b.\"Id\", f.\"Ime\" as FotografIme, f.\"Prezime\" FotografPrezime, m.\"Ime\" as MladenacIme, m.\"Prezime\" as MladenacPrezime, a.\"Ime\" as MladenkaIme, a.\"Prezime\" as MladenkaPrezime, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\"";
+
+                jsoncmd += " where \"Id\" = '"+id.ToString()+"';";
+
+                NpgsqlConnection objpostgraceConn = new NpgsqlConnection(strConnString);
+                objpostgraceConn.Open();
+
+
+                string strpostgracecommand = jsoncmd;
+                string ext = "json";
+                /*
+                if (mode == "0")
+                {
+                    ext = "json";
+                }
+                */
+                NpgsqlDataAdapter objDataAdapter = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn);
+                DataTable dat = new DataTable();
+                objDataAdapter.Fill(dat);
+
+                if (!Directory.Exists("tmp"))
+                    Directory.CreateDirectory("tmp");
+
+                string filept = "tmp\\data." + ext;
+
+                if (dat.Columns.Count != 1)
+                    throw new Exception();
+
+
+                
+
+                var datt = dat.Rows[0].ItemArray;
+
+                if(datt[0].ToString()==string.Empty)
+                    return new BadRequestResult();
+                StreamWriter sw = new StreamWriter(filept);
+                sw.Write(datt[0].ToString());
+
+
+                objpostgraceConn.Close();
+                    sw.Dispose();
+                
+
+                //slanje datoteke
+
+                //Stream stream = new FileStream(filept, FileMode.Open);
+                var bytes = await System.IO.File.ReadAllBytesAsync(filept);
+                return File(bytes, "text/plain", Path.GetFileName(filept));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                //return new HttpResponseMessage(HttpStatusCode.NoContent);
+                //return new HttpUnauthorizedResult();
             }
             return null;
         }
