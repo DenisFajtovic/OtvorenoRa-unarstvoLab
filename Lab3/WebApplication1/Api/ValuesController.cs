@@ -529,25 +529,7 @@ namespace WebApplication1.Controllers
             return null;
         }
 
-        /*
-        // POST api/<ValuesController>
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-            Console.WriteLine(value);
-        }
-        */
-        /*
-        [HttpPost]
-        public StatusCodeResult Post([FromForm] string value)
-        {
-            //osoba
-            //oib, ime, prezime
-            Console.WriteLine("Hi");
 
-            return null;
-        }
-        */
         [HttpPost]
         public IActionResult Post([FromQuery] string oib, [FromQuery] string ime, [FromQuery] string prezime)
         {
@@ -572,10 +554,13 @@ namespace WebApplication1.Controllers
                     DataTable dat = new DataTable();
                     objDataAdapter_.Fill(dat);
                     objpostgraceConn_.Close();
-                    if (dat.Columns.Count > 0)
-                        throw new Exception();
 
-                    
+                    //var datt = dat.Rows[0].ItemArray;
+
+                    if (dat.Rows.Count>0)
+                        return new ConflictResult();
+
+
 
                     //
                     var objpostgraceConn = new NpgsqlConnection(strConnString);
@@ -584,7 +569,7 @@ namespace WebApplication1.Controllers
                     inserts += oib + "','";
                     inserts += ime + "','";
                     inserts += prezime + "')";
-                    string strpostgracecommand = inserts;
+
                     //var objDataAdapter = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn);
                     var cmd = new NpgsqlCommand(inserts, objpostgraceConn);
                     cmd.ExecuteNonQuery();
@@ -613,18 +598,106 @@ namespace WebApplication1.Controllers
             return null;
         }
         */
-        /*
+        
         // PUT api/<ValuesController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public IActionResult Put([FromQuery] string oib, [FromQuery] string ime, [FromQuery] string prezime)
         {
-        }
+            string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
+            try
+            {
+                var id = oib;
+                string jsoncmd = "select \"OIB\" from \"Osobe\" where \"OIB\" = '" + id + "'";
+                //string csvcmd = "select b.\"Id\", f.\"Ime\" as FotografIme, f.\"Prezime\" FotografPrezime, m.\"Ime\" as MladenacIme, m.\"Prezime\" as MladenacPrezime, a.\"Ime\" as MladenkaIme, a.\"Prezime\" as MladenkaPrezime, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\"";
 
+                NpgsqlConnection objpostgraceConn_ = new NpgsqlConnection(strConnString);
+                objpostgraceConn_.Open();
+
+
+                string strpostgracecommand = jsoncmd;
+
+                NpgsqlDataAdapter objDataAdapter_ = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn_);
+                DataTable dat = new DataTable();
+                objDataAdapter_.Fill(dat);
+                objpostgraceConn_.Close();
+
+                //var datt = dat.Rows[0].ItemArray;
+
+                if (dat.Rows.Count != 1)
+                    return new NotFoundResult();
+
+
+
+                //
+                var objpostgraceConn = new NpgsqlConnection(strConnString);
+                objpostgraceConn.Open();
+                string inserts = "update \"Osobe\" set \"Ime\" = '"+ime+ "', \"Prezime\"='"+prezime+ "' where \"OIB\"='"+oib+"'";
+
+                //var objDataAdapter = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn);
+                var cmd = new NpgsqlCommand(inserts, objpostgraceConn);
+                cmd.ExecuteNonQuery();
+                objpostgraceConn.Dispose();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+                //return new HttpResponseMessage(HttpStatusCode.NoContent);
+                //return new HttpUnauthorizedResult();
+            }
+        }
+        
         // DELETE api/<ValuesController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
+
+            string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
+            try
+            {
+                    
+                string jsoncmd = "select \"OIB\" from \"Osobe\" where \"OIB\" = '"+id+"'";
+                //string csvcmd = "select b.\"Id\", f.\"Ime\" as FotografIme, f.\"Prezime\" FotografPrezime, m.\"Ime\" as MladenacIme, m.\"Prezime\" as MladenacPrezime, a.\"Ime\" as MladenkaIme, a.\"Prezime\" as MladenkaPrezime, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\"";
+
+                NpgsqlConnection objpostgraceConn_ = new NpgsqlConnection(strConnString);
+                objpostgraceConn_.Open();
+
+
+                string strpostgracecommand = jsoncmd;
+
+                NpgsqlDataAdapter objDataAdapter_ = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn_);
+                DataTable dat = new DataTable();
+                objDataAdapter_.Fill(dat);
+                objpostgraceConn_.Close();
+
+                //var datt = dat.Rows[0].ItemArray;
+
+                if (dat.Rows.Count!=1)
+                    return new NotFoundResult();
+
+
+
+                //
+                var objpostgraceConn = new NpgsqlConnection(strConnString);
+                objpostgraceConn.Open();
+                string inserts = "delete from \"Osobe\" where \"OIB\"='"+id+"'";
+
+                //var objDataAdapter = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn);
+                var cmd = new NpgsqlCommand(inserts, objpostgraceConn);
+                cmd.ExecuteNonQuery();
+                objpostgraceConn.Dispose();
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+                //return new HttpResponseMessage(HttpStatusCode.NoContent);
+                //return new HttpUnauthorizedResult();
+            }
+            
         }
-        */
+        
     }
 }

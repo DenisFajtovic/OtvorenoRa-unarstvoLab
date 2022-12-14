@@ -1,0 +1,16 @@
+
+
+GET
+
+
+{id}
+http://localhost:5000/api/Database/id/7
+
+POST
+http://localhost:5000/api/Database/?oib=7&ime=Ana&prezime=Anic
+
+PUT
+http://localhost:5000/api/Database/?oib=7&ime=Ana&prezime=Anic
+
+DELETE
+http://localhost:5000/api/Database/5
