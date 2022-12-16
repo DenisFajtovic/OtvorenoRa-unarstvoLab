@@ -140,3 +140,5 @@ C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\obj\D
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\obj\Debug\net5.0\ref\WebApplication1.dll
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\obj\Debug\net5.0\WebApplication1.pdb
 C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\obj\Debug\net5.0\WebApplication1.genruntimeconfig.cache
+C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\bin\Debug\net5.0\tmp\data.json
+C:\Users\Link\Documents\GitHub\OtvorenoRacunarstvoLab\Lab3\WebApplication1\bin\Debug\net5.0\tmp\openapi.json

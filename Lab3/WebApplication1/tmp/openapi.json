@@ -1,0 +1,262 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Swagger Petstore - OpenAPI 3.0",
+    "description": "OpenAPI documentation for wedding book site api",
+    "termsOfService": "http://swagger.io/terms/",
+    "license": {
+      "name": "MIT License",
+      "url": "https://github.com/DenisFajtovic/OtvorenoRacunarstvoLab/blob/main/LICENSE"
+    },
+    "version": "1.0.11"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:5000"
+    }
+  ],
+  "paths": {
+    "/api/Database/openapi": {
+      "summary": "Get openapi doc",
+      "description": "Get openapi doc",
+      "get": {
+        "summary": "Get openapi doc",
+        "description": "Get openapi doc",
+        "operationId": "0",
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database": {
+      "summary": "Get entire weeding book database",
+      "description": "Get entire weeding book database",
+      "get": {
+        "summary": "Get entire weeding book database in a csv/json format",
+        "description": "Get entire weeding book database in a csv/json format",
+        "operationId": "1",
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      },
+      "post": {
+        "summary": "Update person data",
+        "description": "",
+        "operationId": "7",
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      },
+      "put": {
+        "summary": "Add person",
+        "description": "",
+        "operationId": "8",
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database/{format}": {
+      "summary": "Get entire weeding book database",
+      "description": "Get entire weeding book database",
+      "get": {
+        "summary": "Get entire weeding book database in a csv/json format",
+        "description": "Get entire weeding book database in a csv/json format depending on format. 1 for csv format, 0 for json format.",
+        "operationId": "2",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database/{format}/{param}": {
+      "summary": "Get weeding book data that contains param",
+      "description": "Get weeding book data that contains param",
+      "get": {
+        "summary": "Get weeding book data that contains param",
+        "description": "Get weeding book data in a csv/json format depending on format and search. 1 for csv format, 0 for json format.",
+        "operationId": "3",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "param",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database/{format}/{col}/{param}": {
+      "summary": "Get weeding book data that contains param",
+      "description": "Get weeding book data that contains param",
+      "get": {
+        "summary": "Get weeding book data that contains param in column col",
+        "description": "Get weeding book data in a csv/json format depending on format and column search. 1 for csv format, 0 for json format.",
+        "operationId": "4",
+        "parameters": [
+          {
+            "name": "format",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "col",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          },
+          {
+            "name": "param",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "string"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database/person": {
+      "get": {
+        "summary": "Get csv of all people",
+        "description": "",
+        "operationId": "5",
+        "tags": [
+          "Database"
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        }
+      }
+    },
+    "/api/Database/id/{id}": {
+      "summary": "Get single weeding book by id",
+      "description": "Get single weeding book by id",
+      "get": {
+        "summary": "Get entire weeding book database in a csv/json format",
+        "description": "Get entire weeding book database in a csv/json format depending on format. 1 for csv format, 0 for json format.",
+        "operationId": "6",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    },
+    "/api/Database/{id}": {
+      "summary": "Remove person by id",
+      "description": "Remove person by id",
+      "get": {
+        "summary": "Remove person by id",
+        "description": "Get entire weeding book database in a csv/json format depending on format. 1 for csv format, 0 for json format.",
+        "operationId": "9",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "Default error sample response"
+          }
+        },
+        "tags": [
+          "Database"
+        ]
+      }
+    }
+  }
+}

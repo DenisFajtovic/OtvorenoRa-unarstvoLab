@@ -42,6 +42,14 @@ namespace WebApplication1.Controllers
 
 
         // GET: api/<ValuesController>
+        [HttpGet("openapi")]
+        public async Task<ActionResult> Get(byte a)
+        {
+            string filept = "tmp\\openapi.json";
+            var bytes = await System.IO.File.ReadAllBytesAsync(filept);
+            return File(bytes, "text/plain", Path.GetFileName(filept));
+
+        }
         //api za sve podatke
         [HttpGet]
         public DataStructure Get()
@@ -98,7 +106,7 @@ namespace WebApplication1.Controllers
             return new string[] { "value1", "value2" };
             */
             if (mode != "1" && mode != "0")
-                return null;
+                return BadRequest();
             string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
             try
             {
@@ -195,6 +203,85 @@ namespace WebApplication1.Controllers
             //return null;
         }
 
+        //api za sve osobe u scv ili json formatu
+        [HttpGet("person")]
+        public async Task<ActionResult> Get(int id) //DataStructure
+        {
+
+            //if (id != 1 && id != 0)
+            //    return null;
+            string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
+            try
+            {
+                //string jsoncmd = "SET client_encoding TO 'UTF8'; select array_to_json(array_agg(row_to_json(t))) from ( select b.\"Id\", json_build_object( 'Ime', f.\"Ime\", 'Prezime', f.\"Prezime\" ) as Fotograf, json_build_object( 'Ime', m.\"Ime\", 'Prezime', m.\"Prezime\" ) as Mladenac, json_build_object( 'Ime', a.\"Ime\", 'Prezime', a.\"Prezime\" ) as Mladenka, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\" ) t";
+                string csvcmd = "select * from \"Osobe\"";//"select b.\"Id\", f.\"Ime\" as FotografIme, f.\"Prezime\" FotografPrezime, m.\"Ime\" as MladenacIme, m.\"Prezime\" as MladenacPrezime, a.\"Ime\" as MladenkaIme, a.\"Prezime\" as MladenkaPrezime, b.\"Format\", b.\"Korice\", b.\"Broj listova\", b.\"Paket\", b.\"Faceoff\", b.\"Cijena\" from \"Book\" b inner join \"Osobe\" f on b.\"Fotograf\" = f.\"OIB\" inner join \"Osobe\" m on b.\"Mladenac\" = m.\"OIB\" inner join \"Osobe\" a on b.\"Mladenka\" = a.\"OIB\"";
+                NpgsqlConnection objpostgraceConn = new NpgsqlConnection(strConnString);
+                objpostgraceConn.Open();
+                /*
+                string strpostgracecommand = jsoncmd;
+                string ext = "json";
+                if (mode == "1")
+                {
+                    */
+                    string strpostgracecommand = csvcmd;
+                    string ext = "csv";
+                //}
+
+                NpgsqlDataAdapter objDataAdapter = new NpgsqlDataAdapter(strpostgracecommand, objpostgraceConn);
+                DataTable dat = new DataTable();
+                objDataAdapter.Fill(dat);
+
+                if (!Directory.Exists("tmp"))
+                    Directory.CreateDirectory("tmp");
+
+                string filept = "tmp\\data." + ext;
+
+                StreamWriter sw = new StreamWriter(filept);
+
+                //if (mode == "1")
+                //{
+                    for (int i = 0; i < dat.Columns.Count; i++)
+                    {
+                        string s = dat.Columns[i].ColumnName;
+                        sw.Write(dat.Columns[i].ColumnName);
+                        if (i < dat.Columns.Count - 1)
+                            sw.Write(',');
+                    }
+                    sw.WriteLine();
+                //}
+                for (int i = 0; i < dat.Rows.Count; i++)
+                {
+                    //List<string> t = new List<string>();
+                    var datt = dat.Rows[i].ItemArray;
+                    for (int j = 0; j < datt.Length; j++)
+                    {
+                        //if (mode == "0")
+                        //    sw.Write(datt[j].ToString());
+                        //else
+                        //{
+                            sw.Write(datt[j].ToString());
+                            if (j < datt.Length - 1)
+                                sw.Write(',');
+                        //}
+
+                    }
+                    sw.WriteLine();
+                }
+                objpostgraceConn.Close();
+                sw.Dispose();
+
+                var bytes = await System.IO.File.ReadAllBytesAsync(filept);
+                return File(bytes, "text/plain", Path.GetFileName(filept));
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+                return BadRequest();
+            }
+            //return null;
+        }
+
         //api za wildcard filtrirano biranje
         // GET api/<ValuesController>/5
         [HttpGet("{mode}/{arg}")]
@@ -202,7 +289,7 @@ namespace WebApplication1.Controllers
         {
 
             if (mode != "1" && mode != "0")
-                return null;
+                return BadRequest();
             string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
             try
             {
@@ -337,7 +424,7 @@ namespace WebApplication1.Controllers
         {
             int collum;
             if (mode != "1" && mode != "0")
-                return null;
+                return BadRequest();
             string strConnString = "Host=localhost;Port=5432;User Id=postgres;Password=data;Database=Otvoreno";
             try
             {
@@ -585,19 +672,6 @@ namespace WebApplication1.Controllers
                 }
             }
         }
-        /*
-        [HttpPost]
-        public async Task<ActionResult> Post([FromForm] string value)
-        {
-            
-            //Request.Body.
-            using (StreamReader reader = new StreamReader(Request.Body, Encoding.UTF8))
-            {
-                var val = await reader.ReadToEndAsync();
-            }
-            return null;
-        }
-        */
         
         // PUT api/<ValuesController>/5
         [HttpPut]

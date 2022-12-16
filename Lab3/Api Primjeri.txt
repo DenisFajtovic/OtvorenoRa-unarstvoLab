@@ -1,16 +1,33 @@
 
 
 GET
+(openapi)
+http://localhost:5000/api/Database/openapi
 
+(sve)
+http://localhost:5000/api/Database
 
-{id}
+(json/csv)*
+http://localhost:5000/api/Database/1
+http://localhost:5000/api/Database/0
+
+(pretraga *)*
+http://localhost:5000/api/Database/1/550
+
+(pretraga stup)*
+http://localhost:5000/api/Database/0/40/12
+
+(osoba)*
+http://localhost:5000/api/Database/person
+
+(id)
 http://localhost:5000/api/Database/id/7
 
 POST
 http://localhost:5000/api/Database/?oib=7&ime=Ana&prezime=Anic
 
 PUT
-http://localhost:5000/api/Database/?oib=7&ime=Ana&prezime=Anic
+http://localhost:5000/api/Database/?oib=7&ime=Ana&prezime=Perevic
 
 DELETE
-http://localhost:5000/api/Database/5
+http://localhost:5000/api/Database/7
