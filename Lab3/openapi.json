@@ -1,7 +1,7 @@
 {
   "openapi": "3.0.3",
   "info": {
-    "title": "Swagger Petstore - OpenAPI 3.0",
+    "title": "Wedding book database",
     "description": "OpenAPI documentation for wedding book site api",
     "termsOfService": "http://swagger.io/terms/",
     "license": {
